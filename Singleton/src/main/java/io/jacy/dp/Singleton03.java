@@ -7,7 +7,14 @@ package io.jacy.dp;
  * @author Jacy
  */
 public class Singleton03 {
+    private static volatile boolean CREATED = false;
     private Singleton03() {
+        synchronized (Singleton01.class) {
+            if (CREATED) {
+                throw new IllegalAccessError("can not access private constructor.");
+            }
+            CREATED = true;
+        }
     }
 
     public static Singleton03 getInstance() {
