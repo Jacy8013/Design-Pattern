@@ -1,10 +1,12 @@
 package io.jacy.dp;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 
 public class SingletonTest {
     @Test
@@ -52,10 +54,14 @@ public class SingletonTest {
         Assert.assertSame(Singleton04.INSTANCE, Singleton04.INSTANCE);
 
         // 反射测试
-        Constructor<Singleton04> c00 = Singleton04.class.getDeclaredConstructor(null);
+        Constructor<Singleton04> c00 = Singleton04.class.getDeclaredConstructor();
         c00.setAccessible(true);
         Singleton04 s04 = c00.newInstance();
 
         Assert.assertNotSame(s04, Singleton04.INSTANCE);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Integer.toBinaryString(16384));
     }
 }
